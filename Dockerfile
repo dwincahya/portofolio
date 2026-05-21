@@ -10,7 +10,7 @@ RUN npm install -g pnpm
 
 COPY --link package.json pnpm-lock.yaml ./
 
-RUN pnpm install --prod --ignore-scripts
+RUN pnpm install --ignore-scripts
 
 COPY --link . .
 
