@@ -19,7 +19,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Dwi Nur Cahya Portofolio website' }
       ],
       link: [
-        { rel: 'stylesheet', href: 'https://googleapis.com' }
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css' }
       ],
     }
   }
