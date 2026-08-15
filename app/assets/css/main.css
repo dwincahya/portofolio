@@ -1,9 +1,23 @@
 @import "tailwindcss";
 
-:root {
-    --font-lato: 'Lato', sans-serif;
+@theme {
+  --color-bg: #050816;
+  --color-surface: #0b1120;
+  --color-brand: #4ade80;
+  --color-brand-dark: #14532d;
+  --color-accent: #00ff9c;
+  --color-text: #ecfdf5;
+  --color-text-muted: #86efac;
+  --color-border: #1f2937;
+}
+
+html,
+body,
+main,
+aside {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Fira Code", monospace;
 }
