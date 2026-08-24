@@ -5,11 +5,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css'],
-  modules: ['@nuxt/fonts'],
+  modules: [
+    '@nuxt/fonts',
+    '@nuxt/test-utils/module',
+    'lenis/nuxt'
+  ],
   vite: {
     plugins: [tailwindcss()]
   },
-  app : {
+  app: {
     head: {
       title: "Dwi Nur Cahya",
       htmlAttrs: { lang: 'en' },
