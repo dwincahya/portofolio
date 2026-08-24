@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'lenis/dist/lenis.css';
 
 @theme {
   --color-bg: #050816;
@@ -11,11 +12,15 @@
   --color-border: #1f2937;
 }
 
-html,
-body,
-main,
-aside {
-  scroll-behavior: smooth;
+:root[data-theme='light'] {
+  --color-bg: #ecfdf5;
+  --color-surface: #ffffff;
+  --color-brand: #4ade80;
+  --color-brand-dark: #14532d;
+  --color-accent: #00ff9c;
+  --color-text: #050816;
+  --color-text-muted: #14532d;
+  --color-border: #bbf7d0;
 }
 
 body {
