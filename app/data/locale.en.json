@@ -1,0 +1,208 @@
+{
+  "loading": "Still loading, please wait...",
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "certificates": "Certificates"
+  },
+  "profileCard": {
+    "menuAriaLabel": "Menu",
+    "profileImageAlt": "Profile Picture",
+    "socialLinks": [
+      { "icon": "mdi:github", "label": "dwincahya", "url": "https://github.com/dwincahya" },
+      { "icon": "mdi:instagram", "label": "dwiccah", "url": "https://instagram.com/dwicah" },
+      { "icon": "mdi:linkedin", "label": "dwiccah", "url": "https://linkedin.com/in/dwicah" }
+    ]
+  },
+  "sections": {
+    "home": {
+      "title": "Dwi Nur Cahya",
+      "description": "Building, learning, and growing in the digital world.",
+      "button": "Download CV",
+      "link": "https://drive.google.com/file/d/1wVX1sMSLf6GAouCyCgeW-YyIzSkLHkHD/view?usp=sharing"
+    },
+    "experience": {
+      "eyebrow": "Experience",
+      "title": "Experience"
+    },
+    "education": {
+      "eyebrow": "Education",
+      "title": "Education"
+    },
+    "projects": {
+      "eyebrow": "Projects",
+      "title": "Projects",
+      "button": "View Project",
+      "icon": "akar-icons:arrow-up-right"
+    },
+    "certificates": {
+      "eyebrow": "Certificates",
+      "title": "Certificates"
+    }
+  },
+  "portfolio": {
+    "experiences": [
+      {
+        "role": "Fullstack Developer",
+        "place": "Fullstack Developer Bootcamp by Dicoding X DBS Foundation",
+        "period": "Feb 2025 - Apr 2025",
+        "detail": "Planned, developed, and managed fullstack projects by collaborating with a team, designing the architecture, and implementing the required features."
+      },
+      {
+        "role": "Facebook Marketplace Admin",
+        "place": "Jual Sepeda Cah Bagus",
+        "period": "Sep 2024 - Present",
+        "detail": "Managed a Facebook Marketplace account, including products, orders, and customer interactions."
+      },
+      {
+        "role": "Fullstack Developer Intern",
+        "place": "PT AINO INDONESIA",
+        "period": "Jun 2025 - Feb 2026",
+        "detail": "Supported and managed the development of Aino Indonesia's internal website, including API integration and new feature development. Worked with the team from planning through implementation to ensure optimal quality and performance."
+      },
+      {
+        "role": "Fullstack Developer",
+        "place": "CV Karya Hidup Sentosa (Quick)",
+        "period": "Sep 2026 - Present",
+        "detail": "Supported and managed the development of the internal dashboard website for CV Karya Hidup Sentosa (Quick), including API integration and new feature development. Worked with the team from planning through implementation to ensure optimal quality and performance."
+      }
+    ],
+    "educations": [
+      {
+        "school": "SMK NEGERI 2 YOGYAKARTA",
+        "major": "Information Systems, Networking and Application",
+        "period": "2022 - 2026"
+      },
+      {
+        "school": "Fullstack Developer Bootcamp by Dicoding X DBS Foundation",
+        "major": "Fullstack Developer",
+        "period": "2025"
+      },
+      {
+        "school": "Samsung Innovation Campus (SIC) Batch 6",
+        "major": "Artificial Intelligence & Internet of Things",
+        "period": "2025"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Portfolio Website",
+        "technology": "Nuxt, Vue, TypeScript",
+        "detail": "A personal portfolio website with several features.",
+        "link": "https://dwinurcahya.my.id"
+      },
+      {
+        "title": "Light Store",
+        "technology": "React JS, Tailwind CSS",
+        "detail": "A top-up store template website showcasing featured products with a responsive and interactive design.",
+        "link": "https://lightstore.dwinurcahya.my.id"
+      },
+      {
+        "title": "Herta (Health Care & Analytic)",
+        "technology": "React JS, Tailwind CSS, Hapi JS",
+        "detail": "A healthcare website that helps patients predict diseases and access health information powered by an LLM (Large Language Model) and AI (Artificial Intelligence).",
+        "link": "https://herta-official.netlify.app/"
+      },
+      {
+        "title": "Flappy Bird Pixel",
+        "technology": "Vue JS, Tailwind CSS, Vite, TypeScript",
+        "detail": "A Flappy Bird pixel game website with a feature for uploading PNG files as characters.",
+        "link": "https://flappy-bird.dwinurcahya.my.id/"
+      },
+      {
+        "title": "Smart Plant Monitoring",
+        "technology": "Arduino, C++, Blynk, IoT",
+        "detail": "An IoT-based device for real-time plant monitoring with scheduled watering that can be controlled through an application.",
+        "link": ""
+      },
+      {
+        "title": "Fingerprint-Based Attendance Machine with AI Assistant",
+        "technology": "Thonny IDE, Python, IoT, Ubidots, Streamlit, MongoDB",
+        "detail": "An IoT attendance machine using fingerprint recognition and a web-based AI assistant to monitor and manage attendance data in real time.",
+        "link": ""
+      }
+    ],
+    "certificates": [
+      {
+        "title": "Junior Data Center Technical Support",
+        "issuer": "BNSP",
+        "year": "2026",
+        "link": "https://www.dicoding.com/certificates/0Z9XK8JYV9E1"
+      },
+      {
+        "title": "TOEFL",
+        "issuer": "Coursera",
+        "year": "2026",
+        "link": "https://www.coursera.org/account/accomplishments/certificate/9V7X3Z59J3ZP"
+      },
+      {
+        "title": "TOEIC",
+        "issuer": "Dicoding X DBS Foundation",
+        "year": "2026",
+        "link": "https://www.dicoding.com/certificates/0Z9XK8JYV9E1"
+      },
+      {
+        "title": "Artificial Intelligence & Internet of Things",
+        "issuer": "Samsung Innovation Campus (SIC) Batch 6",
+        "year": "2025",
+        "link": "https://drive.google.com/file/d/1g7k3j4k5j4k5j4k5j4k5j4k5j4k5j4k/view?usp=sharing"
+      },
+      {
+        "title": "Fullstack Developer",
+        "issuer": "Dicoding X DBS Foundation",
+        "year": "2025",
+        "link": "https://www.dicoding.com/certificates/0Z9XK8JYV9E1"
+      },
+      {
+        "title": "Fullstack Developer Intern",
+        "issuer": "PT Aino Indonesia",
+        "year": "2026",
+        "link": "https://www.dicoding.com/certificates/0Z9XK8JYV9E1"
+      }
+    ]
+  },
+  "settingsMenu": {
+    "title": "Menu",
+    "close": "Close",
+    "closeAriaLabel": "Close menu",
+    "language": {
+      "title": "Language",
+      "id": "Indonesian",
+      "en": "English",
+      "helper": "Choose language for all texts."
+    },
+    "theme": {
+      "title": "Theme Mode",
+      "dark": "Dark (Default)",
+      "light": "Light"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "highContrast": "High Contrast",
+      "on": "On",
+      "off": "Off",
+      "helper": "Enable this to improve color readability."
+    },
+    "font": {
+      "title": "Font",
+      "helper": "Choose the font you want to use."
+    },
+    "fontSize": {
+      "title": "Font Size",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "helper": "Default size: Medium."
+    },
+    "connect": {
+      "title": "Connect",
+      "links": [
+        { "icon": "mdi:github", "label": "dwincahya", "url": "https://github.com/dwincahya" },
+        { "icon": "mdi:instagram", "label": "dwiccah", "url": "https://instagram.com/dwicah" },
+        { "icon": "mdi:linkedin", "label": "dwiccah", "url": "https://linkedin.com/in/dwicah" }
+      ]
+    }
+  }
+}
