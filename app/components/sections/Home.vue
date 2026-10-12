@@ -11,7 +11,7 @@ const hasFinishedLoading = useState('portfolio-loading-finished', () => false)
     <div class="my-30 mx-5">
       <h1
         :class="[
-          'typing-name mt-3 text-4xl font-black leading-tight md:text-6xl text-accent',
+          'typing-name mt-3 max-w-full text-3xl font-black leading-tight text-accent sm:text-4xl md:text-6xl',
           { 'typing-name--active': hasFinishedLoading }
         ]"
       >
@@ -37,7 +37,7 @@ const hasFinishedLoading = useState('portfolio-loading-finished', () => false)
 <style scoped>
 .typing-name {
   display: inline-block;
-  max-width: max-content;
+  max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   width: 0;
