@@ -15,12 +15,7 @@ dukungan bahasa Indonesia dan Inggris.
 
 ## Persyaratan
 
-- Node.js 20 atau yang lebih baru
-- Salah satu package manager berikut:
-  - Bun
-  - npm
-  - pnpm
-  - Yarn
+- Bun 1 atau yang lebih baru
 
 ## Instalasi
 
@@ -37,9 +32,6 @@ dukungan bahasa Indonesia dan Inggris.
    bun install
    ```
 
-   Jika menggunakan package manager lain, jalankan `npm install`,
-   `pnpm install`, atau `yarn install`.
-
 ## Pengembangan Lokal
 
 Jalankan server pengembangan:
@@ -53,9 +45,7 @@ Situs tersedia di [http://localhost:3000](http://localhost:3000).
 Untuk menjalankan server dengan package manager lain:
 
 ```bash
-npm run dev
-pnpm dev
-yarn dev
+bun run dev
 ```
 
 ## Skrip
@@ -68,9 +58,6 @@ yarn dev
 | `bun run preview` | Meninjau hasil build production secara lokal |
 | `bun run test` | Menjalankan test dengan Vitest |
 
-Ganti `bun run` dengan perintah yang sesuai jika menggunakan npm, pnpm, atau
-Yarn.
-
 ## Pengujian
 
 Jalankan seluruh pengujian dengan:
@@ -78,6 +65,12 @@ Jalankan seluruh pengujian dengan:
 ```bash
 bun run test
 ```
+
+## Continuous Integration
+
+Repositori menggunakan GitHub Actions untuk memeriksa setiap pull request
+menuju branch `master`. Pemeriksaan tersebut menjalankan instalasi dependensi
+dengan lockfile, seluruh pengujian, dan build aplikasi.
 
 ## Menjalankan dengan Docker
 
