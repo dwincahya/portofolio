@@ -1,75 +1,134 @@
-# Nuxt Minimal Starter
+# Portofolio Dwi Nur Cahya
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Situs portofolio personal Dwi Nur Cahya yang menampilkan profil, pengalaman,
+pendidikan, proyek, dan sertifikat dalam satu halaman. Situs ini menyediakan
+dukungan bahasa Indonesia dan Inggris.
 
-## Setup
+## Teknologi
 
-Make sure to install dependencies:
+- Nuxt 4
+- Vue 3
+- Tailwind CSS 4
+- TypeScript
+- Vitest dan Nuxt Test Utils
+- Lenis untuk efek scrolling
+
+## Persyaratan
+
+- Node.js 20 atau yang lebih baru
+- Salah satu package manager berikut:
+  - Bun
+  - npm
+  - pnpm
+  - Yarn
+
+## Instalasi
+
+1. Clone repositori:
+
+   ```bash
+   git clone https://github.com/dwincahya/portofolio.git
+   cd portofolio
+   ```
+
+2. Instal dependensi:
+
+   ```bash
+   bun install
+   ```
+
+   Jika menggunakan package manager lain, jalankan `npm install`,
+   `pnpm install`, atau `yarn install`.
+
+## Pengembangan Lokal
+
+Jalankan server pengembangan:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+Situs tersedia di [http://localhost:3000](http://localhost:3000).
 
-Build the application for production:
+Untuk menjalankan server dengan package manager lain:
 
 ```bash
-# npm
-npm run build
+npm run dev
+pnpm dev
+yarn dev
+```
 
-# pnpm
-pnpm build
+## Skrip
 
-# yarn
-yarn build
+| Perintah | Keterangan |
+| --- | --- |
+| `bun run dev` | Menjalankan server pengembangan |
+| `bun run build` | Membuat build untuk production |
+| `bun run generate` | Membuat static site generation |
+| `bun run preview` | Meninjau hasil build production secara lokal |
+| `bun run test` | Menjalankan test dengan Vitest |
 
-# bun
+Ganti `bun run` dengan perintah yang sesuai jika menggunakan npm, pnpm, atau
+Yarn.
+
+## Pengujian
+
+Jalankan seluruh pengujian dengan:
+
+```bash
+bun run test
+```
+
+## Menjalankan dengan Docker
+
+Pastikan Docker dan Docker Compose telah terpasang, lalu jalankan:
+
+```bash
+docker compose up --build
+```
+
+Aplikasi tersedia di [http://localhost:3000](http://localhost:3000).
+
+Untuk menghentikan container:
+
+```bash
+docker compose down
+```
+
+## Struktur Proyek
+
+```text
+app/
+|-- assets/       # CSS dan aset gambar
+|-- components/   # Komponen antarmuka dan section halaman
+|-- composables/  # Logika yang dapat digunakan ulang
+|-- data/         # Data terjemahan bahasa Indonesia dan Inggris
+|-- layouts/      # Layout aplikasi
+`-- pages/        # Halaman aplikasi
+public/           # File statis
+test/             # Pengujian aplikasi
+```
+
+## Bahasa
+
+Data terjemahan tersedia di:
+
+- `app/data/locale.id.json` untuk bahasa Indonesia
+- `app/data/locale.en.json` untuk bahasa Inggris
+
+Perubahan konten yang ditampilkan pada halaman sebaiknya dilakukan melalui
+file data tersebut agar struktur komponen tetap konsisten.
+
+## Build Production
+
+Buat build production:
+
+```bash
 bun run build
 ```
 
-Locally preview production build:
+Setelah proses selesai, tinjau hasilnya secara lokal:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
 bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
