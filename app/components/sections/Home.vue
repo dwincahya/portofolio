@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { content } = useLocale();
+const hasFinishedLoading = useState('portfolio-loading-finished', () => false)
 </script>
 
 <template>
@@ -9,7 +10,10 @@ const { content } = useLocale();
   >
     <div class="my-30 mx-5">
       <h1
-        class="mt-3 text-4xl font-black leading-tight md:text-6xl text-accent"
+        :class="[
+          'typing-name mt-3 text-4xl font-black leading-tight md:text-6xl text-accent',
+          { 'typing-name--active': hasFinishedLoading }
+        ]"
       >
         {{ content.sections.home.title }}
       </h1>
@@ -29,3 +33,41 @@ const { content } = useLocale();
     </div>
   </section>
 </template>
+
+<style scoped>
+.typing-name {
+  display: inline-block;
+  max-width: max-content;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 0.12em solid currentColor;
+}
+
+.typing-name--active {
+  animation:
+    typing 2.4s steps(13, end) forwards,
+    blink-caret 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 13ch;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: currentColor;
+  }
+}
+</style>
