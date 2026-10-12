@@ -1,19 +1,85 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import Lenis from 'lenis'
-import { onBeforeUnmount, onMounted, provide, ref, shallowRef } from 'vue'
+import { onBeforeMount, onBeforeUnmount, onMounted, provide, ref, shallowRef } from 'vue'
 import Navbar from '~/components/Navbar.vue'
 import ProfileCard from '~/components/ProfileCard.vue'
 
 const { locale, content, setLocale, initializeLocale } = useLocale()
 
+type SavedPreferences = Partial<{
+    locale: 'id' | 'en'
+    theme: 'dark' | 'light'
+    highContrast: boolean
+    font: 'fira-code' | 'space-grotesk' | 'poppins'
+    fontSize: 'small' | 'medium' | 'large'
+}>
+
+const getSavedPreferences = (): SavedPreferences => {
+    if (!import.meta.client) {
+        return {}
+    }
+
+    try {
+        const savedPreferences = localStorage.getItem('portfolio-preferences')
+        if (!savedPreferences) {
+            return {}
+        }
+
+        const parsedPreferences: unknown = JSON.parse(savedPreferences)
+        return parsedPreferences && typeof parsedPreferences === 'object'
+            ? parsedPreferences as SavedPreferences
+            : {}
+    } catch {
+        return {}
+    }
+}
+
+const savedPreferences = getSavedPreferences()
 const lenis = shallowRef<Lenis | null>(null)
 const isLeftMenuOpen = ref(false)
 const isLeftMenuPinned = ref(false)
-const selectedTheme = ref<'dark' | 'light'>('dark')
-const highContrastEnabled = ref(false)
-const selectedFont = ref<'fira-code' | 'space-grotesk' | 'poppins'>('fira-code')
-const selectedFontSize = ref<'small' | 'medium' | 'large'>('medium')
+const preferencesReady = ref(false)
+const selectedTheme = ref<'dark' | 'light'>(
+    savedPreferences.theme === 'light' ? 'light' : 'dark'
+)
+const highContrastEnabled = ref(savedPreferences.highContrast === true)
+const selectedFont = ref<'fira-code' | 'space-grotesk' | 'poppins'>(
+    savedPreferences.font === 'space-grotesk' || savedPreferences.font === 'poppins'
+        ? savedPreferences.font
+        : 'fira-code'
+)
+const selectedFontSize = ref<'small' | 'medium' | 'large'>(
+    savedPreferences.fontSize === 'small' || savedPreferences.fontSize === 'large'
+        ? savedPreferences.fontSize
+        : 'medium'
+)
+
+const restorePreferences = () => {
+    if (!import.meta.client) {
+        return
+    }
+
+    const savedPreferences = localStorage.getItem('portfolio-preferences')
+    if (!savedPreferences) {
+        return
+    }
+
+    try {
+        const preferences = JSON.parse(savedPreferences) as SavedPreferences
+        if (preferences.locale === 'id' || preferences.locale === 'en') setLocale(preferences.locale)
+        if (preferences.theme === 'dark' || preferences.theme === 'light') selectedTheme.value = preferences.theme
+        if (typeof preferences.highContrast === 'boolean') highContrastEnabled.value = preferences.highContrast
+        if (preferences.font === 'fira-code' || preferences.font === 'space-grotesk' || preferences.font === 'poppins') {
+            selectedFont.value = preferences.font
+        }
+        if (preferences.fontSize === 'small' || preferences.fontSize === 'medium' || preferences.fontSize === 'large') {
+            selectedFontSize.value = preferences.fontSize
+        }
+    } catch {
+        localStorage.removeItem('portfolio-preferences')
+    }
+}
 
 const savePreferences = () => {
     localStorage.setItem('portfolio-preferences', JSON.stringify({
@@ -79,37 +145,22 @@ const closePinnedMenu = () => {
 let animationFrame = 0
 provide('portfolio-lenis', lenis)
 
-onMounted(() => {
-    initializeLocale()
-    const savedPreferences = localStorage.getItem('portfolio-preferences')
-    if (savedPreferences) {
-        try {
-            const preferences = JSON.parse(savedPreferences) as Partial<{
-                locale: 'id' | 'en'
-                theme: 'dark' | 'light'
-                highContrast: boolean
-                font: 'fira-code' | 'space-grotesk' | 'poppins'
-                fontSize: 'small' | 'medium' | 'large'
-            }>
-            if (preferences.locale === 'id' || preferences.locale === 'en') setLocale(preferences.locale)
-            if (preferences.theme === 'dark' || preferences.theme === 'light') selectedTheme.value = preferences.theme
-            if (typeof preferences.highContrast === 'boolean') highContrastEnabled.value = preferences.highContrast
-            if (preferences.font === 'fira-code' || preferences.font === 'space-grotesk' || preferences.font === 'poppins') {
-                selectedFont.value = preferences.font
-            }
-            if (preferences.fontSize === 'small' || preferences.fontSize === 'medium' || preferences.fontSize === 'large') {
-                selectedFontSize.value = preferences.fontSize
-            }
-        } catch {
-            localStorage.removeItem('portfolio-preferences')
-        }
+onBeforeMount(() => {
+    if (!import.meta.client) {
+        return
     }
 
+    initializeLocale()
+    restorePreferences()
+})
+
+onMounted(() => {
     setTheme(selectedTheme.value)
     setHighContrast(highContrastEnabled.value)
     setFont(selectedFont.value)
     setFontSize(selectedFontSize.value)
     savePreferences()
+    preferencesReady.value = true
 
     const container = document.getElementById('sections-container')
     if (!container) {
@@ -168,7 +219,7 @@ onBeforeUnmount(() => {
                             <div class="mt-3 flex gap-2">
                                 <button
                                     type="button"
-                                    :class="locale === 'id' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
+                                    :class="preferencesReady && locale === 'id' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
                                     class="cursor-pointer rounded-full border px-3 py-1.5 text-xs font-semibold"
                                     @click="setLocaleAndSave('id')"
                                 >
@@ -176,7 +227,7 @@ onBeforeUnmount(() => {
                                 </button>
                                 <button
                                     type="button"
-                                    :class="locale === 'en' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
+                                    :class="preferencesReady && locale === 'en' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
                                     class="cursor-pointer rounded-full border px-3 py-1.5 text-xs font-semibold"
                                     @click="setLocaleAndSave('en')"
                                 >
@@ -191,7 +242,7 @@ onBeforeUnmount(() => {
                             <div class="mt-3 grid grid-cols-2 gap-2">
                                 <button
                                     type="button"
-                                    :class="selectedTheme === 'dark' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
+                                    :class="preferencesReady && selectedTheme === 'dark' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
                                     class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold"
                                     @click="setTheme('dark')"
                                 >
@@ -199,7 +250,7 @@ onBeforeUnmount(() => {
                                 </button>
                                 <button
                                     type="button"
-                                    :class="selectedTheme === 'light' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
+                                    :class="preferencesReady && selectedTheme === 'light' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'"
                                     class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold"
                                     @click="setTheme('light')"
                                 >
@@ -213,7 +264,7 @@ onBeforeUnmount(() => {
                             <button
                                 type="button"
                                 class="mt-3 flex w-full cursor-pointer items-center justify-between rounded-lg border border-border bg-bg/60 px-3 py-2 text-left"
-                                :class="highContrastEnabled ? 'border-brand bg-brand/15 text-brand' : 'text-text'"
+                                :class="preferencesReady && highContrastEnabled ? 'border-brand bg-brand/15 text-brand' : 'text-text'"
                                 :aria-pressed="highContrastEnabled"
                                 @click="setHighContrast(!highContrastEnabled)"
                             >
@@ -228,9 +279,9 @@ onBeforeUnmount(() => {
                         <section class="rounded-xl border border-border bg-bg/40 p-4">
                             <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ content.settingsMenu.font.title }}</p>
                             <div class="mt-3 grid grid-cols-1 gap-2">
-                                <button type="button" :class="selectedFont === 'fira-code' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('fira-code')">Fira Code</button>
-                                <button type="button" :class="selectedFont === 'space-grotesk' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('space-grotesk')">Space Grotesk</button>
-                                <button type="button" :class="selectedFont === 'poppins' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('poppins')">Poppins</button>
+                                <button type="button" :class="preferencesReady && selectedFont === 'fira-code' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('fira-code')">Fira Code</button>
+                                <button type="button" :class="preferencesReady && selectedFont === 'space-grotesk' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('space-grotesk')">Space Grotesk</button>
+                                <button type="button" :class="preferencesReady && selectedFont === 'poppins' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-left text-xs font-semibold" @click="setFont('poppins')">Poppins</button>
                             </div>
                             <p class="mt-2 text-[11px] text-text-muted">{{ content.settingsMenu.font.helper }}</p>
                         </section>
@@ -238,9 +289,9 @@ onBeforeUnmount(() => {
                         <section class="rounded-xl border border-border bg-bg/40 p-4">
                             <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ content.settingsMenu.fontSize.title }}</p>
                             <div class="mt-3 grid grid-cols-3 gap-2">
-                                <button type="button" :class="selectedFontSize === 'small' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('small')">{{ content.settingsMenu.fontSize.small }}</button>
-                                <button type="button" :class="selectedFontSize === 'medium' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('medium')">{{ content.settingsMenu.fontSize.medium }}</button>
-                                <button type="button" :class="selectedFontSize === 'large' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('large')">{{ content.settingsMenu.fontSize.large }}</button>
+                                <button type="button" :class="preferencesReady && selectedFontSize === 'small' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('small')">{{ content.settingsMenu.fontSize.small }}</button>
+                                <button type="button" :class="preferencesReady && selectedFontSize === 'medium' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('medium')">{{ content.settingsMenu.fontSize.medium }}</button>
+                                <button type="button" :class="preferencesReady && selectedFontSize === 'large' ? 'border-brand bg-brand/15 text-brand' : 'border-border bg-bg/60 text-text'" class="cursor-pointer rounded-lg border px-3 py-2 text-xs font-semibold" @click="setFontSize('large')">{{ content.settingsMenu.fontSize.large }}</button>
                             </div>
                             <p class="mt-2 text-[11px] text-text-muted">{{ content.settingsMenu.fontSize.helper }}</p>
                         </section>
