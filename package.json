@@ -6,12 +6,14 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "test": "vitest --run",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@vue-pdf-viewer/viewer": "^4.3.0",
+    "happy-dom": "^21.0.1",
     "lenis": "^1.3.26",
     "nuxt": "^4.4.4",
     "tailwindcss": "^4.3.0",
@@ -21,6 +23,8 @@
   "devDependencies": {
     "@iconify/vue": "^5.0.1",
     "@nuxt/fonts": "^0.14.0",
-    "@nuxt/test-utils": "^4.1.0"
+    "@nuxt/test-utils": "^4.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "vitest": "^4.1.0"
   }
 }
