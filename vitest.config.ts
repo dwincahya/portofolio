@@ -3,6 +3,9 @@ import { defineVitestProject } from '@nuxt/test-utils/config'
 
 export default defineConfig({
   test: {
+    pool: 'threads',
+    maxWorkers: 1,
+    isolate: false,
     projects: [
       {
         test: {
