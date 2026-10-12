@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <h1 class="font-bold">Welcome to the homepage</h1>
-    <AppAlert>
-      This is an auto-imported component
-    </AppAlert>
+  <div class="space-y-16 pb-14 md:space-y-20 md:pb-20">
+    <SectionsHome />
+    <SectionsExperience />
+    <SectionsEducation />
+    <SectionsProjects />
+    <SectionsCertificates />
   </div>
 </template>
