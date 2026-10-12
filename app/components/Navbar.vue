@@ -103,7 +103,7 @@ onBeforeUnmount(() => {
 		class="relative pointer-events-auto flex w-full flex-row items-center justify-center gap-1 overflow-visible px-1 text-text sm:gap-4 md:w-auto md:flex-col md:gap-8 md:px-0 lg:gap-10">
 		<div aria-hidden="true" class="pointer-events-none absolute left-6 right-6 top-1/2 h-px md:bottom-6 md:left-auto md:right-auto md:top-6 md:h-auto md:w-px">
 			<span
-				class="absolute -top-1.5 size-3 rounded-full bg-brand shadow-[0_0_12px_rgba(74,222,128,0.8)] transition-[left] duration-150 ease-out md:hidden"
+				class="hidden absolute -top-1.5 size-3 rounded-full bg-brand shadow-[0_0_12px_rgba(74,222,128,0.8)] transition-[left] duration-150 ease-out"
 				:style="{ left: `${scrollProgress * 100}%`, transform: 'translateX(-50%)' }" />
 			<span
 				class="absolute -left-1.5 top-0 hidden size-3 rounded-full bg-brand shadow-[0_0_12px_rgba(74,222,128,0.8)] transition-[top] duration-150 ease-out md:block"
