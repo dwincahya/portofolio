@@ -24,12 +24,9 @@ const hasFinishedLoading = useState('portfolio-loading-finished', () => false)
         v-if="content.sections.home.link"
         :href="content.sections.home.link"
         target="_blank"
+        rel="noopener noreferrer"
         class="mt-6 inline-flex items-center justify-center rounded-full border-2 border-text px-14 py-2 text-sm font-semibold text-text transition-all duration-300 ease-out hover:scale-105 hover:border-brand hover:bg-brand hover:text-bg hover:shadow-[0_0_25px_rgba(74,222,128,0.5)] active:scale-95 md:text-3xl"
-      >
-        <button type="button" class="cursor-pointer">
-          {{ content.sections.home.button }}
-        </button></a
-      >
+      >{{ content.sections.home.button }}</a>
     </div>
   </section>
 </template>

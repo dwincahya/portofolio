@@ -12,7 +12,7 @@ const { content } = useLocale()
         <h3 class="text-xl font-semibold">{{ project.title }}</h3>
         <p class="mt-1 text-text-muted">{{ project.technology }}</p>
         <p class="mt-3 leading-relaxed">{{ project.detail }}</p>
-        <a v-if="project.link" :href="project.link" target="_blank" class="mt-3 inline-flex items-center justify-center rounded-full border-2 border-text px-4 py-2 text-sm font-semibold text-text transition-all duration-300 ease-out hover:scale-105 hover:border-brand hover:bg-brand hover:text-bg hover:shadow-[0_0_25px_rgba(74,222,128,0.5)] active:scale-95 md:text-base">
+        <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center justify-center rounded-full border-2 border-text px-4 py-2 text-sm font-semibold text-text transition-all duration-300 ease-out hover:scale-105 hover:border-brand hover:bg-brand hover:text-bg hover:shadow-[0_0_25px_rgba(74,222,128,0.5)] active:scale-95 md:text-base">
           <span>{{ content.sections.projects.button }}</span>
           <Icon :icon="content.sections.projects.icon" class="ml-2" />
         </a>
