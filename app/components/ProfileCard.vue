@@ -50,6 +50,7 @@ const emit = defineEmits<{
           :key="link.label"
           :href="link.url"
           target="_blank"
+            rel="noopener noreferrer"
           class="flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-4 px-1 sm:px-1.5 md:px-2 lg:px-3 xl:px-3 2xl:px-5 py-0.5 sm:py-1 md:py-1.5 lg:py-2 xl:py-2 2xl:py-4 rounded-md sm:rounded-lg text-text hover:text-brand hover:bg-surface/50 transition-all duration-200"
         >
           <span

@@ -11,7 +11,7 @@ describe('Home section', () => {
     expect(wrapper.find('p').text()).toBe(
       'Membangun, belajar, dan berkembang di dunia digital.',
     )
-    expect(wrapper.find('button').text()).toBe('Unduh CV')
+    expect(wrapper.find('a').text()).toBe('Unduh CV')
   })
 
   it('renders the CV link with the configured URL and external target', async () => {
@@ -23,5 +23,6 @@ describe('Home section', () => {
       'https://drive.google.com/file/d/1wVX1sMSLf6GAouCyCgeW-YyIzSkLHkHD/view?usp=sharing',
     )
     expect(link.attributes('target')).toBe('_blank')
+    expect(link.attributes('rel')).toBe('noopener noreferrer')
   })
 })
