@@ -26,6 +26,9 @@ onBeforeMount(() => {
       v-if="gifAvailable"
       :src="loadingGif"
       alt=""
+      width="112"
+      height="112"
+      decoding="async"
       class="h-28 w-28 object-contain sm:h-36 sm:w-36"
       @error="handleGifError"
     >
