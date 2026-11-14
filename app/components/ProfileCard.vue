@@ -37,6 +37,11 @@ const emit = defineEmits<{
           <img
             src="~/assets/images/PP.JPG"
             :alt="content.profileCard.profileImageAlt"
+            width="768"
+            height="1024"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             class="w-full h-full object-cover"
           />
         </div>

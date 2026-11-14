@@ -167,6 +167,10 @@ onMounted(() => {
         return
     }
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return
+    }
+
     lenis.value = new Lenis({
         wrapper: container,
         content: container.firstElementChild as HTMLElement
