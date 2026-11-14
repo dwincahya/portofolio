@@ -57,7 +57,6 @@ export default defineNuxtConfig({
 ],
       link: [
         { rel: 'canonical', href: 'https://dwinurcahya.my.id/' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css' }
       ],
     }
   }
